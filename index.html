@@ -132,7 +132,7 @@
 <body>
     <header>
         <h1>Turbo Tuga Ultra Meme Analyzer</h1>
-        <p class="meme-warning">⚠️ This is a meme report for fun! Not financial advice. ⚠️</p>
+        <p class="meme-warning">⚠️ This is a meme post, for fun only! Not financial advice. ⚠️</p>
     </header>
 
     <main>
@@ -161,16 +161,17 @@
 const generateBtn = document.getElementById("generateBtn");
 const reportContainer = document.getElementById("reportContainer");
 
-// Token fixo Turbo Tuga
+// Fixed Turbo Tuga token
 const turboTugaCode = "9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ";
 
-// Meme banks
+// Meme/GIF bank (host them also in your own fun.turbotuga.com if possible)
 const gifs = [
     "https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif",
     "https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif",
     "https://media.giphy.com/media/l0HlHFRbmaZtBRhXG/giphy.gif"
 ];
 
+// Meme phrases
 const phrases = {
     supply: [
         "🐳 A whale just sneezed, market crashed!",
@@ -203,19 +204,19 @@ function randomElement(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
-// Compartilhamento Twitter
-function shareOnTwitter(text) {
-    const url = encodeURIComponent("https://seusite.com"); 
-    const tweet = encodeURIComponent(text);
+// Share on Twitter
+function shareOnTwitter(text, gifUrl) {
+    const url = encodeURIComponent("https://fun.turbotuga.com");
+    const tweet = encodeURIComponent(text + "\n" + gifUrl);
     window.open(`https://twitter.com/intent/tweet?text=${tweet}&url=${url}`, "_blank");
 }
 
-// Compartilhamento Telegram
-function shareOnTelegram(text) {
-    window.open(`https://t.me/share/url?url=https://seusite.com&text=${encodeURIComponent(text)}`, "_blank");
+// Share on Telegram
+function shareOnTelegram(text, gifUrl) {
+    window.open(`https://t.me/share/url?url=https://fun.turbotuga.com&text=${encodeURIComponent(text + "\n" + gifUrl)}`, "_blank");
 }
 
-// Baixar como imagem
+// Download as image
 function downloadImage() {
     html2canvas(reportContainer).then(canvas => {
         const link = document.createElement("a");
@@ -225,7 +226,7 @@ function downloadImage() {
     });
 }
 
-// Gerar Relatório
+// Generate Meme Report
 generateBtn.onclick = function() {
     const tokenName = document.getElementById("tokenName").value || "Turbo Tuga";
     const tokenCode = document.getElementById("tokenCode").value || turboTugaCode;
@@ -244,19 +245,19 @@ generateBtn.onclick = function() {
         fieldsText += `${f.toUpperCase()}: ${phrase}\n`;
     });
 
-    // Texto puro para compartilhar
-    let shareText = `🤣 POST MEME - DIVERSÃO 🤣\n\nToken: ${tokenName} — ${tokenCode}\n${fieldsText}\nToken Turbo Tuga — ${turboTugaCode}\n#turbotuga`;
+    // Share text
+    let shareText = `🤣 MEME POST - FOR FUN 🤣\n\nToken: ${tokenName} — ${tokenCode}\n${fieldsText}\nToken Turbo Tuga — ${turboTugaCode}\n#turbotuga`;
 
     reportContainer.innerHTML = `
-        <h2>🤣 POST MEME - DIVERSÃO 🤣</h2>
+        <h2>🤣 MEME POST - FOR FUN 🤣</h2>
         <p><strong>Token:</strong> ${tokenName} — ${tokenCode}</p>
         <ul>${fieldsHtml}</ul>
         <img src="${randomGif}" class="meme-gif">
         <p class="hashtag">Token Turbo Tuga — ${turboTugaCode}<br>#turbotuga</p>
 
         <div class="share-buttons">
-            <button onclick="shareOnTwitter(\`${shareText}\`)">🐦 Twitter</button>
-            <button onclick="shareOnTelegram(\`${shareText}\`)">📲 Telegram</button>
+            <button onclick="shareOnTwitter(\`${shareText}\`, '${randomGif}')">🐦 Twitter</button>
+            <button onclick="shareOnTelegram(\`${shareText}\`, '${randomGif}')">📲 Telegram</button>
             <button onclick="downloadImage()">💾 Save as Image</button>
         </div>
     `;
