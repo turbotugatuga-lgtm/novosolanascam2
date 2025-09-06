@@ -17,122 +17,49 @@
 <meta name="twitter:image" content="https://fun.turbotuga.com/images/default-preview.png">
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Comic Sans MS', sans-serif;
-    background: url('https://i.ibb.co/7vKf0F1/crypto-bg.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-}
-header {
-    text-align: center;
-    padding: 20px;
-    background: rgba(0,0,0,0.6);
-}
-.meme-warning { font-size: 1rem; color: #ffcc00; }
-.input-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px;
-    flex-wrap: wrap;
-}
-input[type="text"] {
-    padding: 10px;
-    font-size: 1rem;
-    width: 250px;
-    border-radius: 8px;
-    border: none;
-}
-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: none;
-    background-color: #ff9900;
-    cursor: pointer;
-    font-weight: bold;
-}
-button:hover { background-color: #ffcc00; }
-.report-container {
-    margin: 20px auto;
-    padding: 20px;
-    width: 90%;
-    max-width: 900px;
-    background: rgba(0,0,0,0.7);
-    border-radius: 15px;
-    box-shadow: 0 0 20px #000;
-}
-.hashtag {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-top: 15px;
-    color: #ffcc00;
-    font-weight: bold;
-}
-.buy-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px;
-}
-.buy-buttons a {
-    padding: 10px 20px;
-    background-color: #00ccff;
-    border-radius: 10px;
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-}
-.buy-buttons a:hover { background-color: #00ffee; }
-.share-buttons {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.share-buttons button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: #ffcc00;
-    font-weight: bold;
-}
-.share-buttons button:hover { background: #ffaa00; }
-footer {
-    text-align: center;
-    padding: 20px;
-    background: rgba(0,0,0,0.6);
-}
+body { margin:0; font-family:'Comic Sans MS', sans-serif; background:url('https://i.ibb.co/7vKf0F1/crypto-bg.jpg') no-repeat center center fixed; background-size:cover; color:#fff; }
+header { text-align:center; padding:20px; background:rgba(0,0,0,0.6); }
+.meme-warning { font-size:1rem; color:#ffcc00; }
+.input-container { display:flex; justify-content:center; gap:10px; margin:20px; flex-wrap:wrap; }
+input[type="text"] { padding:10px; font-size:1rem; width:250px; border-radius:8px; border:none; }
+button { padding:10px 20px; font-size:1rem; border-radius:8px; border:none; background-color:#ff9900; cursor:pointer; font-weight:bold; }
+button:hover { background-color:#ffcc00; }
+.report-container { margin:20px auto; padding:20px; width:90%; max-width:900px; background:rgba(0,0,0,0.7); border-radius:15px; box-shadow:0 0 20px #000; }
+.hashtag { text-align:center; font-size:1.2rem; margin-top:15px; color:#ffcc00; font-weight:bold; }
+.buy-buttons { display:flex; justify-content:center; gap:20px; margin:20px; }
+.buy-buttons a { padding:10px 20px; background-color:#00ccff; border-radius:10px; color:#000; text-decoration:none; font-weight:bold; }
+.buy-buttons a:hover { background-color:#00ffee; }
+.share-buttons { margin-top:20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.share-buttons button { padding:10px 15px; border:none; border-radius:8px; cursor:pointer; background:#ffcc00; font-weight:bold; }
+.share-buttons button:hover { background:#ffaa00; }
+footer { text-align:center; padding:20px; background:rgba(0,0,0,0.6); }
 </style>
 </head>
 <body>
 <header>
-    <h1>Turbo Tuga Ultra Meme Analyzer</h1>
-    <p class="meme-warning">⚠️ This is a meme post, for fun only! Not financial advice. ⚠️</p>
+<h1>Turbo Tuga Ultra Meme Analyzer</h1>
+<p class="meme-warning">⚠️ This is a meme post, for fun only! Not financial advice. ⚠️</p>
 </header>
 
 <main>
-    <div class="input-container">
-        <input type="text" id="tokenName" placeholder="Enter token name (optional)">
-        <input type="text" id="tokenCode" placeholder="Enter token code (optional)">
-        <button id="generateBtn">Generate Meme Report</button>
-    </div>
+<div class="input-container">
+<input type="text" id="tokenName" placeholder="Enter token name (optional)">
+<input type="text" id="tokenCode" placeholder="Enter token code (optional)">
+<button id="generateBtn">Generate Meme Report</button>
+</div>
 
-    <div class="report-container" id="reportContainer">
-        <!-- Meme report will appear here -->
-    </div>
+<div class="report-container" id="reportContainer">
+<!-- Meme report will appear here -->
+</div>
 
-    <div class="buy-buttons">
-        <a href="https://orca.so/?tokenIn=9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ&tokenOut=So11111111111111111111111111111111111111112" target="_blank">Buy Turbo Tuga on Orca 🐬</a>
-        <a href="https://jup.ag/swap?sell=9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ&buy=So11111111111111111111111111111111111111112" target="_blank">Buy Turbo Tuga on Jupiter 🪐</a>
-    </div>
+<div class="buy-buttons">
+<a href="https://orca.so/?tokenIn=9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ&tokenOut=So11111111111111111111111111111111111111112" target="_blank">Buy Turbo Tuga on Orca 🐬</a>
+<a href="https://jup.ag/swap?sell=9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ&buy=So11111111111111111111111111111111111111112" target="_blank">Buy Turbo Tuga on Jupiter 🪐</a>
+</div>
 </main>
 
 <footer>
-    <p>Turbo Tuga Meme Project — Enjoy responsibly 🚀</p>
+<p>Turbo Tuga Meme Project — Enjoy responsibly 🚀</p>
 </footer>
 
 <script>
@@ -140,60 +67,56 @@ const generateBtn = document.getElementById("generateBtn");
 const reportContainer = document.getElementById("reportContainer");
 const turboTugaCode = "9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ";
 
-// Emoji bank for memes
-const memeEmojis = [
-  "🤣🚀💥🐳🪐💸🔥😎📈📉🐟", 
-  "😂💨💣🐬💥📊🌕🪐🦄🍕",
-  "😹🔥🤣🐳🪐💸💥🚨🐟🎉",
-  "💀🤣💎🐬🚀📈🌕💥😎🍿",
-  "😂💨🐳🔥📉🤣🐟🪐💸💥"
-];
-
-// Phrases for report fields
+// Phrases (10 por campo como exemplo, você pode expandir para 50)
 const phrases = {
-    supply: ["🐳 A whale just sneezed, market crashed!", "🪐 Supply looks weird, but who cares?", "💨 Token evaporated into the void."],
-    burned: ["🔥 Burned like my hopes!", "💣 Someone sent coins to Mars!", "📉 Daily transactions? LOL."],
-    holders: ["💸 Taxed like crazy, moon soon!", "🐟 Sardines everywhere, whales hiding.", "😎 Hold tight, diamond hands!"],
-    price: ["🚨 Price unknown, panic or profit?", "💥 Revoked admin? Perfect, more chaos.", "📊 Chart says: Who knows!"],
-    locked: ["🔒 Locked until the end of time.", "🌕 Market cap? Infinite, maybe.", "⛓️ Can't sell, but you can dream!"]
+  supply: ["🐳 Whale sneezed!", "🪐 Weird supply!", "💨 Token evaporated.", "🚀 Skyrocketing supply!", "🤣 HODLers confused!", "💥 Exploding coins!", "🐬 Dolphins count coins.", "💎 Diamond hands!", "📈 Supply mooning!", "🔥 Hot tokens!"],
+  burned: ["🔥 Burned like my hopes!", "💣 Coins to Mars!", "📉 Daily chaos!", "💨 Burn fast!", "💥 Evaporated tokens!", "🤣 Burn party!", "🚀 Rockets incinerate!", "🐳 Whale burns!", "💎 Diamond hands lost!", "📊 Charts burning!"],
+  holders: ["💸 Taxed heavily!", "🐟 Sardines hiding!", "😎 Diamond hands!", "🚀 Moon mission holders!", "🤣 Panic hodlers!", "💥 Explosion holders!", "🐬 Dolphin hodlers!", "💎 Diamond hodlers!", "📈 Holder climb!", "🔥 Hot hodlers!"],
+  price: ["🚨 Unknown price!", "💥 Chaos price!", "📊 Who knows!", "💸 Skyrocketing?", "🤣 Dropping!", "🔥 Hot price!", "🐳 Whale push!", "💎 Stable hands!", "🚀 Moon price!", "💨 Price evaporates!"],
+  locked: ["🔒 Locked forever!", "🌕 Infinite market cap!", "⛓️ Can't sell!", "🚀 Locked rocket!", "🤣 Locked LOL!", "💥 Explosive lock!", "🐬 Dolphin lock!", "💎 Diamond lock!", "📈 Steady lock!", "🔥 Hot lock!"],
+  revoked: ["💥 Admin revoked!", "🤣 Permissions gone!", "🚨 Revoked!", "🐬 Dolphin admin!", "💎 Diamond admin gone!", "🔥 Explosive revocation!", "📉 Maybe crash?", "💀 RIP features", "🍕 Pizza admin!", "🎉 Party!"],
+  tax: ["💸 Tax crazy!", "🤣 Tax man stole!", "🔥 Hot tax!", "🐳 Whale taxed!", "💎 Diamond hands survive!", "🚀 Tax rockets!", "📈 Climbing tax!", "💨 Evaporated tax!", "🍕 Pizza taxes!", "💀 Deadly tax!"],
+  scam: ["💀 Scam alert?", "🤣 Trustworthy lol", "🔥 Scam or not?", "🐬 Legit-ish", "💎 HOLD!", "🚨 Scam vibes!", "📉 Suspicious chart", "💨 Vaporized trust!", "🍕 Pizza scam!", "🎉 Meme safe!"],
+  creator: ["👨‍🚀 Mysterious astronaut!", "🤣 Unknown creator", "🔥 Built by chaos", "🐬 Dolphin gang!", "💎 Diamond hands creator", "🚀 Rocket scientist!", "📈 Charts made by creator", "💨 Disappeared creator", "🍕 Pizza chef!", "💀 Deadly genius!"]
 };
 
+// Emoji bank
+const memeEmojis = ["🤣🚀💥🐳🪐💸🔥😎📈📉🐟","😂💨💣🐬💥📊🌕🪐🦄🍕","😹🔥🤣🐳🪐💸💥🚨🐟🎉","💀🤣💎🐬🚀📈🌕💥😎🍿","😂💨🐳🔥📉🤣🐟🪐💸💥"];
+
 // Utility
-function randomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function randomElement(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
 // Generate Meme Report
-generateBtn.onclick = function() {
-    const tokenName = document.getElementById("tokenName").value || "Turbo Tuga";
-    const tokenCode = document.getElementById("tokenCode").value || turboTugaCode;
+generateBtn.onclick = function(){
+  const tokenName = document.getElementById("tokenName").value || "Turbo Tuga";
+  const tokenCode = document.getElementById("tokenCode").value || turboTugaCode;
 
-    // Shuffle fields
-    const allFields = Object.keys(phrases);
-    const shuffledFields = allFields.sort(() => 0.5 - Math.random());
-    const selectedFields = shuffledFields.slice(0, 3 + Math.floor(Math.random() * 3));
+  const allFields = Object.keys(phrases);
+  const shuffledFields = allFields.sort(()=>0.5-Math.random());
+  const selectedFields = shuffledFields.slice(0, 3+Math.floor(Math.random()*3)); // 3 a 5 campos
 
-    let fieldsHtml = "";
-    let fieldsText = "";
-    selectedFields.forEach(f => {
-        const phrase = randomElement(phrases[f]);
-        fieldsHtml += `<li><strong>${f.toUpperCase()}:</strong> ${phrase}</li>`;
-        fieldsText += `${f.toUpperCase()}: ${phrase}\n`;
-    });
+  let fieldsHtml="", fieldsText="";
+  selectedFields.forEach(f=>{
+    const phrase = randomElement(phrases[f]);
+    fieldsHtml += `<li><strong>${f.toUpperCase()}:</strong> ${phrase}</li>`;
+    fieldsText += `${f.toUpperCase()}: ${phrase}\n`;
+  });
 
-    const randomEmojiLine = randomElement(memeEmojis);
+  const emojiLine = randomElement(memeEmojis);
 
-    const shareText = `🤣 MEME POST - FOR FUN 🤣\n\nToken: ${tokenName} — ${tokenCode}\n${fieldsText}\n${randomEmojiLine}\nToken Turbo Tuga — ${turboTugaCode}\n#turbotuga\nfun.turbotuga.com`;
+  const reportHtml = `
+    <h2>${tokenName} Meme Report</h2>
+    <p class="report-warning">⚠️ This is a FUN meme report! Not financial advice. ⚠️</p>
+    <p><strong>Token:</strong> ${tokenName} — ${tokenCode}</p>
+    <ul>${fieldsHtml}</ul>
+    <p style="font-size:1.5rem;">${emojiLine}</p>
+    <p class="hashtag">#turbotuga — fun.turbotuga.com</p>
+  `;
 
-    reportContainer.innerHTML = `
-        <h2>🤣 MEME POST - FOR FUN 🤣</h2>
-        <p><strong>Token:</strong> ${tokenName} — ${tokenCode}</p>
-        <ul>${fieldsHtml}</ul>
-        <p style="text-align:center; font-size:2rem;">${randomEmojiLine}</p>
-        <p class="hashtag">Token Turbo Tuga — ${turboTugaCode}<br>#turbotuga<br>fun.turbotuga.com</p>
-        <div class="share-buttons">
-            <button onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(\`${shareText}\`))">🐦 Twitter</button>
-            <button onclick="window.open('https://t.me/share/url?url=https://fun.turbotuga.com&text=' + encodeURIComponent(\`${shareText}\`))">📲 Telegram</button>
-        </div>
-    `;
+  reportContainer.innerHTML = reportHtml;
+
+  const reportText = `${tokenName} Meme Report\nToken: ${tokenName} — ${tokenCode}\n${fieldsText}${emojiLine}\n#turbotuga\nfun.turbotuga.com`;
+  console.log(reportText); // para usar com APIs de compartilhamento
 };
 </script>
 </body>
