@@ -149,7 +149,7 @@ const memeEmojis = [
   "😂💨🐳🔥📉🤣🐟🪐💸💥"
 ];
 
-// Phrases
+// Phrases for report fields
 const phrases = {
     supply: ["🐳 A whale just sneezed, market crashed!", "🪐 Supply looks weird, but who cares?", "💨 Token evaporated into the void."],
     burned: ["🔥 Burned like my hopes!", "💣 Someone sent coins to Mars!", "📉 Daily transactions? LOL."],
@@ -158,14 +158,17 @@ const phrases = {
     locked: ["🔒 Locked until the end of time.", "🌕 Market cap? Infinite, maybe.", "⛓️ Can't sell, but you can dream!"]
 };
 
+// Utility
 function randomElement(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-// Generate report
+// Generate Meme Report
 generateBtn.onclick = function() {
     const tokenName = document.getElementById("tokenName").value || "Turbo Tuga";
     const tokenCode = document.getElementById("tokenCode").value || turboTugaCode;
 
-    const shuffledFields = Object.keys(phrases).sort(() => 0.5 - Math.random());
+    // Shuffle fields
+    const allFields = Object.keys(phrases);
+    const shuffledFields = allFields.sort(() => 0.5 - Math.random());
     const selectedFields = shuffledFields.slice(0, 3 + Math.floor(Math.random() * 3));
 
     let fieldsHtml = "";
@@ -178,14 +181,14 @@ generateBtn.onclick = function() {
 
     const randomEmojiLine = randomElement(memeEmojis);
 
-    let shareText = `🤣 MEME POST - FOR FUN 🤣\n\nToken: ${tokenName} — ${tokenCode}\n${fieldsText}\n${randomEmojiLine}\nToken Turbo Tuga — ${turboTugaCode}\n#turbotuga`;
+    const shareText = `🤣 MEME POST - FOR FUN 🤣\n\nToken: ${tokenName} — ${tokenCode}\n${fieldsText}\n${randomEmojiLine}\nToken Turbo Tuga — ${turboTugaCode}\n#turbotuga\nfun.turbotuga.com`;
 
     reportContainer.innerHTML = `
         <h2>🤣 MEME POST - FOR FUN 🤣</h2>
         <p><strong>Token:</strong> ${tokenName} — ${tokenCode}</p>
         <ul>${fieldsHtml}</ul>
         <p style="text-align:center; font-size:2rem;">${randomEmojiLine}</p>
-        <p class="hashtag">Token Turbo Tuga — ${turboTugaCode}<br>#turbotuga</p>
+        <p class="hashtag">Token Turbo Tuga — ${turboTugaCode}<br>#turbotuga<br>fun.turbotuga.com</p>
         <div class="share-buttons">
             <button onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(\`${shareText}\`))">🐦 Twitter</button>
             <button onclick="window.open('https://t.me/share/url?url=https://fun.turbotuga.com&text=' + encodeURIComponent(\`${shareText}\`))">📲 Telegram</button>
