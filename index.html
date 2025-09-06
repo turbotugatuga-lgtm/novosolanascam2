@@ -5,17 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Turbo Tuga Ultra Meme Analyzer</title>
 
-<!-- Open Graph for social sharing -->
-<meta property="og:title" content="Turbo Tuga Meme Analyzer">
-<meta property="og:description" content="🤣 Generate your own Meme Report for fun — not financial advice! 🚀 #turbotuga">
-<meta property="og:image" content="https://fun.turbotuga.com/images/default-preview.png">
-<meta property="og:url" content="https://fun.turbotuga.com">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Turbo Tuga Meme Analyzer">
-<meta name="twitter:description" content="🤣 Generate your own Meme Report for fun — not financial advice! 🚀 #turbotuga">
-<meta name="twitter:image" content="https://fun.turbotuga.com/images/default-preview.png">
-
 <style>
 body { margin:0; font-family:'Comic Sans MS', sans-serif; background:url('https://i.ibb.co/7vKf0F1/crypto-bg.jpg') no-repeat center center fixed; background-size:cover; color:#fff; }
 header { text-align:center; padding:20px; background:rgba(0,0,0,0.6); }
@@ -48,15 +37,17 @@ footer { text-align:center; padding:20px; background:rgba(0,0,0,0.6); }
 <button id="generateBtn">Generate Meme Report</button>
 </div>
 
-<div class="report-container" id="reportContainer">
-<!-- Meme report will appear here -->
-</div>
+<div class="report-container" id="reportContainer"></div>
 
 <div class="buy-buttons">
 <a href="https://orca.so/?tokenIn=9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ&tokenOut=So11111111111111111111111111111111111111112" target="_blank">Buy Turbo Tuga on Orca 🐬</a>
 <a href="https://jup.ag/swap?sell=9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ&buy=So11111111111111111111111111111111111111112" target="_blank">Buy Turbo Tuga on Jupiter 🪐</a>
 </div>
-</main>
+
+<div class="share-buttons">
+<button id="shareTwitter">Share on Twitter 🐦</button>
+<button id="shareTelegram">Share on Telegram ✈️</button>
+</div>
 
 <footer>
 <p>Turbo Tuga Meme Project — Enjoy responsibly 🚀</p>
@@ -65,35 +56,37 @@ footer { text-align:center; padding:20px; background:rgba(0,0,0,0.6); }
 <script>
 const generateBtn = document.getElementById("generateBtn");
 const reportContainer = document.getElementById("reportContainer");
+const shareTwitterBtn = document.getElementById("shareTwitter");
+const shareTelegramBtn = document.getElementById("shareTelegram");
+
 const turboTugaCode = "9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ";
 
-// Phrases (10 por campo como exemplo, você pode expandir para 50)
+// Phrases: exemplo 10 por campo, expanda para 50 depois
 const phrases = {
-  supply: ["🐳 Whale sneezed!", "🪐 Weird supply!", "💨 Token evaporated.", "🚀 Skyrocketing supply!", "🤣 HODLers confused!", "💥 Exploding coins!", "🐬 Dolphins count coins.", "💎 Diamond hands!", "📈 Supply mooning!", "🔥 Hot tokens!"],
-  burned: ["🔥 Burned like my hopes!", "💣 Coins to Mars!", "📉 Daily chaos!", "💨 Burn fast!", "💥 Evaporated tokens!", "🤣 Burn party!", "🚀 Rockets incinerate!", "🐳 Whale burns!", "💎 Diamond hands lost!", "📊 Charts burning!"],
-  holders: ["💸 Taxed heavily!", "🐟 Sardines hiding!", "😎 Diamond hands!", "🚀 Moon mission holders!", "🤣 Panic hodlers!", "💥 Explosion holders!", "🐬 Dolphin hodlers!", "💎 Diamond hodlers!", "📈 Holder climb!", "🔥 Hot hodlers!"],
-  price: ["🚨 Unknown price!", "💥 Chaos price!", "📊 Who knows!", "💸 Skyrocketing?", "🤣 Dropping!", "🔥 Hot price!", "🐳 Whale push!", "💎 Stable hands!", "🚀 Moon price!", "💨 Price evaporates!"],
-  locked: ["🔒 Locked forever!", "🌕 Infinite market cap!", "⛓️ Can't sell!", "🚀 Locked rocket!", "🤣 Locked LOL!", "💥 Explosive lock!", "🐬 Dolphin lock!", "💎 Diamond lock!", "📈 Steady lock!", "🔥 Hot lock!"],
-  revoked: ["💥 Admin revoked!", "🤣 Permissions gone!", "🚨 Revoked!", "🐬 Dolphin admin!", "💎 Diamond admin gone!", "🔥 Explosive revocation!", "📉 Maybe crash?", "💀 RIP features", "🍕 Pizza admin!", "🎉 Party!"],
-  tax: ["💸 Tax crazy!", "🤣 Tax man stole!", "🔥 Hot tax!", "🐳 Whale taxed!", "💎 Diamond hands survive!", "🚀 Tax rockets!", "📈 Climbing tax!", "💨 Evaporated tax!", "🍕 Pizza taxes!", "💀 Deadly tax!"],
-  scam: ["💀 Scam alert?", "🤣 Trustworthy lol", "🔥 Scam or not?", "🐬 Legit-ish", "💎 HOLD!", "🚨 Scam vibes!", "📉 Suspicious chart", "💨 Vaporized trust!", "🍕 Pizza scam!", "🎉 Meme safe!"],
-  creator: ["👨‍🚀 Mysterious astronaut!", "🤣 Unknown creator", "🔥 Built by chaos", "🐬 Dolphin gang!", "💎 Diamond hands creator", "🚀 Rocket scientist!", "📈 Charts made by creator", "💨 Disappeared creator", "🍕 Pizza chef!", "💀 Deadly genius!"]
+  supply: ["🐳 Whale sneezed!","🪐 Weird supply!","💨 Token evaporated.","🚀 Skyrocketing supply!","🤣 HODLers confused!","💥 Exploding coins!","🐬 Dolphins count coins.","💎 Diamond hands!","📈 Supply mooning!","🔥 Hot tokens!"],
+  burned: ["🔥 Burned like my hopes!","💣 Coins to Mars!","📉 Daily chaos!","💨 Burn fast!","💥 Evaporated tokens!","🤣 Burn party!","🚀 Rockets incinerate!","🐳 Whale burns!","💎 Diamond hands lost!","📊 Charts burning!"],
+  holders: ["💸 Taxed heavily!","🐟 Sardines hiding!","😎 Diamond hands!","🚀 Moon mission holders!","🤣 Panic hodlers!","💥 Explosion holders!","🐬 Dolphin hodlers!","💎 Diamond hodlers!","📈 Holder climb!","🔥 Hot hodlers!"],
+  price: ["🚨 Unknown price!","💥 Chaos price!","📊 Who knows!","💸 Skyrocketing?","🤣 Dropping!","🔥 Hot price!","🐳 Whale push!","💎 Stable hands!","🚀 Moon price!","💨 Price evaporates!"],
+  locked: ["🔒 Locked forever!","🌕 Infinite market cap!","⛓️ Can't sell!","🚀 Locked rocket!","🤣 Locked LOL!","💥 Explosive lock!","🐬 Dolphin lock!","💎 Diamond lock!","📈 Steady lock!","🔥 Hot lock!"],
+  revoked: ["💥 Admin revoked!","🤣 Permissions gone!","🚨 Revoked!","🐬 Dolphin admin!","💎 Diamond admin gone!","🔥 Explosive revocation!","📉 Maybe crash?","💀 RIP features","🍕 Pizza admin!","🎉 Party!"],
+  tax: ["💸 Tax crazy!","🤣 Tax man stole!","🔥 Hot tax!","🐳 Whale taxed!","💎 Diamond hands survive!","🚀 Tax rockets!","📈 Climbing tax!","💨 Evaporated tax!","🍕 Pizza taxes!","💀 Deadly tax!"],
+  scam: ["💀 Scam alert?","🤣 Trustworthy lol","🔥 Scam or not?","🐬 Legit-ish","💎 HOLD!","🚨 Scam vibes!","📉 Suspicious chart","💨 Vaporized trust!","🍕 Pizza scam!","🎉 Meme safe!"],
+  creator: ["👨‍🚀 Mysterious astronaut!","🤣 Unknown creator","🔥 Built by chaos","🐬 Dolphin gang!","💎 Diamond hands creator","🚀 Rocket scientist!","📈 Charts made by creator","💨 Disappeared creator","🍕 Pizza chef!","💀 Deadly genius!"]
 };
 
-// Emoji bank
 const memeEmojis = ["🤣🚀💥🐳🪐💸🔥😎📈📉🐟","😂💨💣🐬💥📊🌕🪐🦄🍕","😹🔥🤣🐳🪐💸💥🚨🐟🎉","💀🤣💎🐬🚀📈🌕💥😎🍿","😂💨🐳🔥📉🤣🐟🪐💸💥"];
 
-// Utility
 function randomElement(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
-// Generate Meme Report
+let lastReportText = "";
+
 generateBtn.onclick = function(){
   const tokenName = document.getElementById("tokenName").value || "Turbo Tuga";
   const tokenCode = document.getElementById("tokenCode").value || turboTugaCode;
 
   const allFields = Object.keys(phrases);
   const shuffledFields = allFields.sort(()=>0.5-Math.random());
-  const selectedFields = shuffledFields.slice(0, 3+Math.floor(Math.random()*3)); // 3 a 5 campos
+  const selectedFields = shuffledFields.slice(0, 3+Math.floor(Math.random()*3));
 
   let fieldsHtml="", fieldsText="";
   selectedFields.forEach(f=>{
@@ -114,9 +107,17 @@ generateBtn.onclick = function(){
   `;
 
   reportContainer.innerHTML = reportHtml;
+  lastReportText = `${tokenName} Meme Report\nToken: ${tokenName} — ${tokenCode}\n${fieldsText}${emojiLine}\n#turbotuga\nfun.turbotuga.com`;
+};
 
-  const reportText = `${tokenName} Meme Report\nToken: ${tokenName} — ${tokenCode}\n${fieldsText}${emojiLine}\n#turbotuga\nfun.turbotuga.com`;
-  console.log(reportText); // para usar com APIs de compartilhamento
+// Compartilhamento
+shareTwitterBtn.onclick = function(){
+  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(lastReportText)}`;
+  window.open(url, '_blank');
+};
+shareTelegramBtn.onclick = function(){
+  const url = `https://t.me/share/url?url=${encodeURIComponent('https://fun.turbotuga.com')}&text=${encodeURIComponent(lastReportText)}`;
+  window.open(url, '_blank');
 };
 </script>
 </body>
