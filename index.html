@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turbo Tuga Ultra Meme Analyzer</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Comic Sans MS', sans-serif;
+        background: url('https://i.ibb.co/7vKf0F1/crypto-bg.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+    }
+
+    header {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0,0,0,0.6);
+    }
+
+    .meme-warning {
+        font-size: 1rem;
+        color: #ffcc00;
+    }
+
+    .input-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px;
+        flex-wrap: wrap;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        font-size: 1rem;
+        width: 250px;
+        border-radius: 8px;
+        border: none;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: none;
+        background-color: #ff9900;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: #ffcc00;
+    }
+
+    .report-container {
+        margin: 20px auto;
+        padding: 20px;
+        width: 90%;
+        max-width: 900px;
+        background: rgba(0,0,0,0.7);
+        border-radius: 15px;
+        box-shadow: 0 0 20px #000;
+    }
+
+    .meme-gif {
+        display: block;
+        margin: 20px auto;
+        max-width: 300px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px #ff00ff;
+        animation: pop 0.7s ease-in-out;
+    }
+    @keyframes pop {
+        0% { transform: scale(0.5); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    .hashtag {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-top: 15px;
+        color: #ffcc00;
+        font-weight: bold;
+    }
+
+    .share-buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+    .share-buttons button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #ffcc00;
+        font-weight: bold;
+    }
+    .share-buttons button:hover {
+        background: #ffaa00;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0,0,0,0.6);
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Turbo Tuga Ultra Meme Analyzer</h1>
+        <p class="meme-warning">⚠️ This is a meme report for fun! Not financial advice. ⚠️</p>
+    </header>
+
+    <main>
+        <div class="input-container">
+            <input type="text" id="tokenName" placeholder="Enter token name (optional)">
+            <button id="generateBtn">Generate Meme Report</button>
+        </div>
+
+        <div class="report-container" id="reportContainer">
+            <!-- Meme report will appear here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>Turbo Tuga Meme Project — Enjoy responsibly 🚀</p>
+    </footer>
+
+<script>
+const generateBtn = document.getElementById("generateBtn");
+const reportContainer = document.getElementById("reportContainer");
+
+// Token fixo Turbo Tuga
+const turboTugaCode = "9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ";
+
+// Meme banks
+const memesTop = [
+    '🚀 Turbo Tuga going to the moon!',
+    '💥 Exploding meme coins!',
+    '🐬 HODL like a dolphin!',
+    '📈 Charts going straight up!'
+];
+const memesBottom = [
+    '🌕 Moon mission continues!',
+    '💸 Whale alert!',
+    '🤣 Just a meme report, relax!',
+    '🔥 Price is totally random!'
+];
+
+// GIFs para aparecer apenas 1 por relatório
+const gifs = [
+    "https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif",
+    "https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif",
+    "https://media.giphy.com/media/l0HlHFRbmaZtBRhXG/giphy.gif"
+];
+
+// Frases por campo
+const phrases = {
+    supply: [
+        "🐳 A whale just sneezed, market crashed!",
+        "🪐 Supply looks weird, but who cares?",
+        "💨 Token evaporated into the void."
+    ],
+    burned: [
+        "🔥 Burned like my hopes!",
+        "💣 Someone sent coins to Mars!",
+        "📉 Daily transactions? LOL."
+    ],
+    holders: [
+        "💸 Taxed like crazy, moon soon!",
+        "🐟 Sardines everywhere, whales hiding.",
+        "😎 Hold tight, diamond hands!"
+    ],
+    price: [
+        "🚨 Price unknown, panic or profit?",
+        "💥 Revoked admin? Perfect, more chaos.",
+        "📊 Chart says: Who knows!"
+    ],
+    locked: [
+        "🔒 Locked until the end of time.",
+        "🌕 Market cap? Infinite, maybe.",
+        "⛓️ Can't sell, but you can dream!"
+    ]
+};
+
+// Utilitário
+function randomElement(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// Compartilhamento Twitter
+function shareOnTwitter(text) {
+    const url = encodeURIComponent("https://seusite.com"); // coloque o link do seu site
+    const tweet = encodeURIComponent(text);
+    window.open(`https://twitter.com/intent/tweet?text=${tweet}&url=${url}`, "_blank");
+}
+
+// Compartilhamento Telegram
+function shareOnTelegram(text) {
+    window.open(`https://t.me/share/url?url=https://seusite.com&text=${encodeURIComponent(text)}`, "_blank");
+}
+
+// Gerar Relatório
+generateBtn.onclick = function() {
+    const tokenName = document.getElementById("tokenName").value || "Turbo Tuga";
+    const tokenCode = turboTugaCode; // sempre usar seu código fixo
+
+    const topMeme = randomElement(memesTop);
+    const bottomMeme = randomElement(memesBottom);
+    const randomGif = randomElement(gifs);
+
+    // Pegar apenas alguns campos aleatórios
+    const allFields = Object.keys(phrases);
+    const shuffledFields = allFields.sort(() => 0.5 - Math.random());
+    const selectedFields = shuffledFields.slice(0, 3 + Math.floor(Math.random() * 3)); // mostra entre 3 e 5
+
+    let fieldsHtml = "";
+    selectedFields.forEach(f => {
+        fieldsHtml += `<li><strong>${f.toUpperCase()}:</strong> ${randomElement(phrases[f])}</li>`;
+    });
+
+    reportContainer.innerHTML = `
+        <h2>${tokenName} Meme Report</h2>
+        <p class="report-warning">⚠️ This is a FUN meme report! Not financial advice ⚠️</p>
+        <p><strong>Token:</strong> ${tokenName} — ${tokenCode}</p>
+        <ul>${fieldsHtml}</ul>
+        <div class="meme-top">${topMeme}</div>
+        <img src="${randomGif}" class="meme-gif">
+        <div class="meme-bottom">${bottomMeme}</div>
+        <p class="hashtag">#turbotuga</p>
+        <div class="share-buttons">
+            <button onclick="shareOnTwitter('😂 Meu Meme Report de ${tokenName} — ${tokenCode} #turbotuga')">🐦 Twitter</button>
+            <button onclick="shareOnTelegram('😂 Meu Meme Report de ${tokenName} — ${tokenCode} #turbotuga')">📲 Telegram</button>
+        </div>
+    `;
+};
+</script>
+</body>
+</html>
