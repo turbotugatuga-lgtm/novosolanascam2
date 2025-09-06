@@ -145,6 +145,11 @@
         <div class="report-container" id="reportContainer">
             <!-- Meme report will appear here -->
         </div>
+
+        <div class="buy-buttons">
+            <a href="https://orca.so/?tokenIn=9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ&tokenOut=So11111111111111111111111111111111111111112" target="_blank">Buy Turbo Tuga on Orca 🐬</a>
+            <a href="https://jup.ag/swap?sell=9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ&buy=So11111111111111111111111111111111111111112" target="_blank">Buy Turbo Tuga on Jupiter 🪐</a>
+        </div>
     </main>
 
     <footer>
@@ -160,27 +165,12 @@ const reportContainer = document.getElementById("reportContainer");
 const turboTugaCode = "9QLR3WrENnBGsv6kL33d4kDHvak71k2hBvKbHgEDwQtQ";
 
 // Meme banks
-const memesTop = [
-    '🚀 Turbo Tuga going to the moon!',
-    '💥 Exploding meme coins!',
-    '🐬 HODL like a dolphin!',
-    '📈 Charts going straight up!'
-];
-const memesBottom = [
-    '🌕 Moon mission continues!',
-    '💸 Whale alert!',
-    '🤣 Just a meme report, relax!',
-    '🔥 Price is totally random!'
-];
-
-// GIFs para aparecer apenas 1 por relatório
 const gifs = [
     "https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif",
     "https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif",
     "https://media.giphy.com/media/l0HlHFRbmaZtBRhXG/giphy.gif"
 ];
 
-// Frases por campo
 const phrases = {
     supply: [
         "🐳 A whale just sneezed, market crashed!",
@@ -209,14 +199,13 @@ const phrases = {
     ]
 };
 
-// Utilitário
 function randomElement(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
 // Compartilhamento Twitter
 function shareOnTwitter(text) {
-    const url = encodeURIComponent("https://seusite.com"); // coloque o link do seu site
+    const url = encodeURIComponent("https://seusite.com"); 
     const tweet = encodeURIComponent(text);
     window.open(`https://twitter.com/intent/tweet?text=${tweet}&url=${url}`, "_blank");
 }
@@ -241,41 +230,29 @@ generateBtn.onclick = function() {
     const tokenName = document.getElementById("tokenName").value || "Turbo Tuga";
     const tokenCode = document.getElementById("tokenCode").value || turboTugaCode;
 
-    const topMeme = randomElement(memesTop);
-    const bottomMeme = randomElement(memesBottom);
     const randomGif = randomElement(gifs);
 
-    // Pegar apenas alguns campos aleatórios
     const allFields = Object.keys(phrases);
     const shuffledFields = allFields.sort(() => 0.5 - Math.random());
-    const selectedFields = shuffledFields.slice(0, 3 + Math.floor(Math.random() * 3)); // mostra entre 3 e 5
+    const selectedFields = shuffledFields.slice(0, 3 + Math.floor(Math.random() * 3));
 
     let fieldsHtml = "";
+    let fieldsText = "";
     selectedFields.forEach(f => {
-        fieldsHtml += `<li><strong>${f.toUpperCase()}:</strong> ${randomElement(phrases[f])}</li>`;
+        const phrase = randomElement(phrases[f]);
+        fieldsHtml += `<li><strong>${f.toUpperCase()}:</strong> ${phrase}</li>`;
+        fieldsText += `${f.toUpperCase()}: ${phrase}\n`;
     });
 
     // Texto puro para compartilhar
-    let shareText = `${tokenName} Meme Report\nToken: ${tokenName} — ${tokenCode}\n`;
-    selectedFields.forEach(f => {
-        shareText += `${f.toUpperCase()}: ${randomElement(phrases[f])}\n`;
-    });
-    shareText += "#turbotuga";
+    let shareText = `🤣 POST MEME - DIVERSÃO 🤣\n\nToken: ${tokenName} — ${tokenCode}\n${fieldsText}\nToken Turbo Tuga — ${turboTugaCode}\n#turbotuga`;
 
     reportContainer.innerHTML = `
-        <h2>${tokenName} Meme Report</h2>
-        <p class="report-warning">⚠️ This is a FUN meme report! Not financial advice ⚠️</p>
+        <h2>🤣 POST MEME - DIVERSÃO 🤣</h2>
         <p><strong>Token:</strong> ${tokenName} — ${tokenCode}</p>
         <ul>${fieldsHtml}</ul>
-        <div class="meme-top">${topMeme}</div>
         <img src="${randomGif}" class="meme-gif">
-        <div class="meme-bottom">${bottomMeme}</div>
-        <p class="hashtag">#turbotuga</p>
-
-        <div class="buy-buttons">
-            <a href="https://orca.so/?tokenIn=${turboTugaCode}&tokenOut=So11111111111111111111111111111111111111112" target="_blank">Buy Turbo Tuga on Orca 🐬</a>
-            <a href="https://jup.ag/swap?sell=${turboTugaCode}&buy=So11111111111111111111111111111111111111112" target="_blank">Buy Turbo Tuga on Jupiter 🪐</a>
-        </div>
+        <p class="hashtag">Token Turbo Tuga — ${turboTugaCode}<br>#turbotuga</p>
 
         <div class="share-buttons">
             <button onclick="shareOnTwitter(\`${shareText}\`)">🐦 Twitter</button>
